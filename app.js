@@ -7,7 +7,7 @@ console.clear();
 
 const main = async() => {
   
-    let option = '';
+    let option = "";
     do {
         
         option =  await inquirerMenu();
