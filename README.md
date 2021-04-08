@@ -4,3 +4,4 @@ This is my first CLI app on node and allow you to manage your tasks by using the
 
 ### Funtions
 1. List tasks
+2. Add task
