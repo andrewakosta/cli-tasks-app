@@ -9,6 +9,8 @@ class Task {
         this.desc =  desc;
         this.doneOn = null;
     }
+
+
 }
 
 module.exports = Task;
