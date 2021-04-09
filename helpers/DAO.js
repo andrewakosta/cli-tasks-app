@@ -12,6 +12,5 @@ exports.readDB = () => {
         return null
     }
     const data = fs.readFileSync(filePath, {encoding:'utf-8'})
-    console.log(JSON.parse(data));
-    return null;
+    return JSON.parse(data);
 }

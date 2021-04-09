@@ -10,11 +10,11 @@ const main = async () => {
 
     let option = '';
     const tasks = new Tasks();
-    const isThereAnyTask = readDB();
-    if(isThereAnyTask){
-        //load tasks
+    const tasksFromDB = readDB();
+    if(tasksFromDB){
+        console.log(tasksFromDB);
+        tasks.loadTaskFromJSONFile(tasksFromDB);
     }
-    await pausa();
     do {
 
         option = await inquirerMenu();

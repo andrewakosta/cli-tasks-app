@@ -11,6 +11,12 @@ class Tasks {
         this._list[task.id] = task;
     } 
 
+    loadTaskFromJSONFile(tasks = [] ){
+        tasks.forEach(task => { 
+            this._list[task.id] = task;
+        })
+    }
+    
     get tasksAsArray(){
         const list = [];
         Object.keys(this._list).forEach(_task =>{
@@ -20,6 +26,7 @@ class Tasks {
 
         return list;
     }
+
 }
 
 module.exports = Tasks;
