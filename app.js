@@ -1,6 +1,7 @@
 require('colors')
 
 const { inquirerMenu, pausa, readInput } = require('./helpers/inquirer');
+const { saveTasksInJsonFile } = require('./helpers/saveFile');
 const Task = require('./models/Task');
 const Tasks = require('./models/Tasks')
 console.clear();
@@ -23,6 +24,8 @@ const main = async () => {
             default:
                 break;
         }
+
+        saveTasksInJsonFile(JSON.stringify(tasks.tasksAsArray))
         //console.log('\n'); 
         await pausa();
 
