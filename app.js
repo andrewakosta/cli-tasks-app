@@ -1,7 +1,7 @@
 require('colors')
 
 const { inquirerMenu, pausa, readInput } = require('./helpers/inquirer');
-const { saveTasksInJsonFile } = require('./helpers/saveFile');
+const { saveTasksInJsonFile, readDB } = require('./helpers/DAO');
 const Task = require('./models/Task');
 const Tasks = require('./models/Tasks')
 console.clear();
@@ -9,7 +9,12 @@ console.clear();
 const main = async () => {
 
     let option = '';
-    const tasks = new Tasks()
+    const tasks = new Tasks();
+    const isThereAnyTask = readDB();
+    if(isThereAnyTask){
+        //load tasks
+    }
+    await pausa();
     do {
 
         option = await inquirerMenu();
