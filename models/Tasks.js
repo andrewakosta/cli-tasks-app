@@ -16,7 +16,15 @@ class Tasks {
             this._list[task.id] = task;
         })
     }
-    
+    listAllTaskWithStatus(){
+        console.log("");
+        this.tasksAsArray.forEach((task, index)=>{
+            const idx = `${index + 1 }`.green
+            const {desc, doneOn} = task;
+            const status = doneOn ? " Done ".bgGreen:" To Do ".bgBlue;
+            console.log(idx+". " + desc +" "+  status);
+        })
+    }
     get tasksAsArray(){
         const list = [];
         Object.keys(this._list).forEach(_task =>{
