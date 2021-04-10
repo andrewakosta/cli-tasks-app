@@ -1,6 +1,6 @@
 require('colors')
 
-const { inquirerMenu, pausa, readInput, listTaskAsMenu } = require('./helpers/inquirer');
+const { inquirerMenu, pausa, readInput, listTaskAsMenu, confirm } = require('./helpers/inquirer');
 const { saveTasksInJsonFile, readDB } = require('./helpers/DAO');
 const Task = require('./models/Task');
 const Tasks = require('./models/Tasks')
@@ -34,8 +34,14 @@ const main = async () => {
                 break;
             case '6':
                 const id = await listTaskAsMenu(tasks.tasksAsArray);
-                console.log({id});
-                break;    
+                if (id !== '0') {
+                    const ok = await confirm('Are you sure you want to remove this task?');
+                    if (ok) {
+                        tasks.removeTask(id);
+                        console.log(`  ✔ `.green + 'Task removed successfuly...');
+                    }
+                    break;
+                }
             default:
                 break;
         }
@@ -43,6 +49,7 @@ const main = async () => {
         saveTasksInJsonFile(JSON.stringify(tasks.tasksAsArray))
         //console.log('\n'); 
         await pausa();
+        console.clear()
 
     } while (option !== '0');
 }
