@@ -11,7 +11,7 @@ const main = async () => {
     let option = '';
     const tasks = new Tasks();
     const tasksFromDB = readDB();
-    if(tasksFromDB){
+    if (tasksFromDB) {
         console.log(tasksFromDB);
         tasks.loadTaskFromJSONFile(tasksFromDB);
     }
@@ -20,11 +20,17 @@ const main = async () => {
         option = await inquirerMenu();
         switch (option) {
             case '1':
-                    const desc = await readInput('Description: ')
-                    tasks.createTask(desc)
+                const desc = await readInput('Description: ')
+                tasks.createTask(desc)
                 break;
             case '2':
-                     tasks.listAllTaskWithStatus()
+                tasks.listAllTaskWithStatus()
+                break;
+            case '3':
+                tasks.listTaskByStatus(true)
+                break;
+            case '4':
+                tasks.listTaskByStatus(false)
                 break;
             default:
                 break;
