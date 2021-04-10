@@ -117,7 +117,7 @@ exports.showTasksAsCheckbox = async (tasks =[]) =>{
         return {
             value: task.id,
             name: task.desc,
-            checked:task.doneOn ? true : false
+            checked: task.doneOn ? true : false
         }
     })
      const question = [

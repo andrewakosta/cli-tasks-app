@@ -45,6 +45,20 @@ class Tasks {
             delete this._list[id];
         }
     }
+
+    markAsDoneArrayOfTask(ids =[]){
+        ids.forEach( id =>{
+            const task  = this._list[id];
+            if(!task.doneOn){
+                task.doneOn = new Date().toISOString();
+            }
+        })
+        this.tasksAsArray.forEach(task =>{
+            if(!ids.includes(task.id)){
+                this._list[task.id].doneOn = null;
+            }
+        })
+    }
     get tasksAsArray() {
         const list = [];
         Object.keys(this._list).forEach(_task => {

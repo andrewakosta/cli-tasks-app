@@ -33,7 +33,7 @@ const main = async () => {
                 break;
             case '5':
                 const ids = await showTasksAsCheckbox(tasks.tasksAsArray);
-                console.log(ids);
+                tasks.markAsDoneArrayOfTask(ids)
                 break;    
             case '6':
                 const id = await listTaskAsMenu(tasks.tasksAsArray);
