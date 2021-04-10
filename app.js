@@ -1,6 +1,6 @@
 require('colors')
 
-const { inquirerMenu, pausa, readInput } = require('./helpers/inquirer');
+const { inquirerMenu, pausa, readInput, listTaskAsMenu } = require('./helpers/inquirer');
 const { saveTasksInJsonFile, readDB } = require('./helpers/DAO');
 const Task = require('./models/Task');
 const Tasks = require('./models/Tasks')
@@ -32,6 +32,10 @@ const main = async () => {
             case '4':
                 tasks.listTaskByStatus(false)
                 break;
+            case '6':
+                const id = await listTaskAsMenu(tasks.tasksAsArray);
+                console.log({id});
+                break;    
             default:
                 break;
         }

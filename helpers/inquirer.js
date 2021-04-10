@@ -61,18 +61,38 @@ exports.pausa = async () => {
 
 exports.readInput = async (message) => {
     const question = [
-        { 
+        {
             type: 'input',
             name: 'desc',
             message,
-            validate(value){
-                if(value.length === 0){
+            validate(value) {
+                if (value.length === 0) {
                     return 'Please enter a value'
                 }
                 return true
-            } 
+            }
         }
     ]
-    const {desc} =  await inquirer.prompt(question);
+    const { desc } = await inquirer.prompt(question);
     return desc;
+}
+
+exports.listTaskAsMenu = async (tasks = []) => {
+    const choices = tasks.map((task, index) => {
+        const idx = `${index + 1}`.green
+        return {
+            value: task.id,
+            name: `${idx} ${task.desc}`
+        }
+    });
+    const questions = [
+        { 
+            type:'list',
+            name:'id',
+            message:'Remove task',
+            choices
+        }
+    ]
+    const {id} = await inquirer.prompt(questions)
+    return id;
 }

@@ -40,6 +40,11 @@ class Tasks {
 
         })
     }
+    removeTask(id = ''){
+        if(this._list[id]){
+            delete this._list[id];
+        }
+    }
     get tasksAsArray() {
         const list = [];
         Object.keys(this._list).forEach(_task => {
