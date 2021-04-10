@@ -111,3 +111,25 @@ exports.confirm  = async(message ='')=>{
     const {ok} =  await inquirer.prompt(question);
     return ok;
 }
+
+exports.showTasksAsCheckbox = async (tasks =[]) =>{
+    const choices = tasks.map((task, index)=>{
+        return {
+            value: task.id,
+            name: task.desc,
+            checked:task.doneOn ? true : false
+        }
+    })
+     const question = [
+         {
+             type:'checkbox',
+             name:'ids',
+             message: 'Mark as done', 
+             choices
+         }
+     ]
+
+     const {ids} = await inquirer.prompt(question);
+     return ids;
+}
+

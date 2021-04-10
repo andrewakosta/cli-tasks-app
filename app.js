@@ -1,6 +1,6 @@
 require('colors')
 
-const { inquirerMenu, pausa, readInput, listTaskAsMenu, confirm } = require('./helpers/inquirer');
+const { inquirerMenu, pausa, readInput, listTaskAsMenu, confirm, showTasksAsCheckbox } = require('./helpers/inquirer');
 const { saveTasksInJsonFile, readDB } = require('./helpers/DAO');
 const Task = require('./models/Task');
 const Tasks = require('./models/Tasks')
@@ -12,7 +12,6 @@ const main = async () => {
     const tasks = new Tasks();
     const tasksFromDB = readDB();
     if (tasksFromDB) {
-        console.log(tasksFromDB);
         tasks.loadTaskFromJSONFile(tasksFromDB);
     }
     do {
@@ -32,6 +31,10 @@ const main = async () => {
             case '4':
                 tasks.listTaskByStatus(false)
                 break;
+            case '5':
+                const ids = await showTasksAsCheckbox(tasks.tasksAsArray);
+                console.log(ids);
+                break;    
             case '6':
                 const id = await listTaskAsMenu(tasks.tasksAsArray);
                 if (id !== '0') {
